@@ -1,0 +1,38 @@
+{
+  "name": "lumina-wgsl",
+  "version": "1.0.0",
+  "description": "Real-Time WebGPU Volumetric Light Scattering & Eulerian Fluid Solver in WGSL",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "demo": "npx serve examples"
+  },
+  "keywords": [
+    "webgpu",
+    "wgsl",
+    "fluid-dynamics",
+    "navier-stokes",
+    "volumetric-lighting",
+    "light-scattering",
+    "threejs",
+    "compute-shaders",
+    "ray-marching",
+    "eulerian-grid"
+  ],
+  "author": "nff747",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.14.2",
+    "@types/three": "^0.165.0",
+    "three": "^0.165.0",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  },
+  "peerDependencies": {
+    "three": ">=0.150.0"
+  }
+}
