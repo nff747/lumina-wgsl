@@ -6,3 +6,4 @@ export * from './shaders/divergence.wgsl';
 export * from './shaders/jacobi.wgsl';
 export * from './shaders/vorticity.wgsl';
 export * from './shaders/volumetricLight.wgsl';
+export * from './shaders/buoyancy.wgsl';

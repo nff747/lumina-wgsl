@@ -60,3 +60,13 @@ describe('Lumina WGSL - Fluid Math & Boundary Conditions', () => {
     expect(Math.abs(div)).toBeLessThan(1e-6);
   });
 });
+
+import { buoyancyShader } from '../src/shaders/buoyancy.wgsl';
+
+describe('Lumina WGSL - Thermal Buoyancy Kernel', () => {
+  it('should compile thermal buoyancy shader with Boussinesq approximation', () => {
+    expect(buoyancyShader).toContain('@compute @workgroup_size(8, 8, 4)');
+    expect(buoyancyShader).toContain('(-params.alpha * density + params.beta * (temperature - params.ambientTemperature))');
+    expect(buoyancyShader).toContain('velocity.y += forceY * params.dt');
+  });
+});
