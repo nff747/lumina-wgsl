@@ -184,3 +184,6 @@ To help us keep this ecosystem thriving, we simply ask that if you use this code
 > *(Alternatively, just **"Powered by [nff747](https://github.com/nff747)"** is also perfectly fine to make it easier to display!)*
 
 Thank you for respecting the open-source spirit and helping us grow!
+
+---
+[![Powered by nff747](https://img.shields.io/badge/Powered%20by-nff747-black?style=flat-square&logo=github)](https://github.com/nff747)
