@@ -148,31 +148,6 @@ Verifies:
 
 ---
 
-## 📜 License & Attribution
-
-Distributed under the **MIT License**. Free for personal, research, and commercial usage.
-
-Powered by **[nff747](https://github.com/nff747)**.
-
----
-
-
----
-
----
-## ❤️ Open Source & Attribution
-
-We believe in the power of open-source and want these tools to help you build incredible things! 
-
-If you use this infrastructure in your personal project, startup, or open-source app, all we ask in return is that you include a small, visible credit. It helps us grow the community and allows us to keep building free, high-performance tools for everyone.
-
-Please include the following in your app's "Credits" page, footer, or `README.md`:
-> **Powered by infrastructure built by [nff747](https://github.com/nff747)**
-> 
-> *(Alternatively, just **"Powered by [nff747](https://github.com/nff747)"** is also perfectly fine to make it easier to display!)*
-
-Thank you for being part of the journey! 🚀
-
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
