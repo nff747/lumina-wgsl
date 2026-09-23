@@ -9,3 +9,10 @@ describe('Path Tracer WGSL Generator', () => {
     expect(wgsl).toContain('struct Material');
   });
 });
+
+describe('Path Tracer Logic', () => {
+  it('should include BRDF and scattering', () => {
+    const wgsl = generatePathTracerWGSL();
+    expect(wgsl).toContain('fn lambertian_scatter');
+  });
+});
