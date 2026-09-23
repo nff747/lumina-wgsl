@@ -7,3 +7,4 @@ export * from './hit';
 export * from './brdf';
 export * from './tracer';
 export * from './compute';
+export * from './generator';
