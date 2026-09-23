@@ -16,3 +16,11 @@ describe('Path Tracer Logic', () => {
     expect(wgsl).toContain('fn lambertian_scatter');
   });
 });
+
+describe('Path Tracer Entry Point', () => {
+  it('should include compute shader main function', () => {
+    const wgsl = generatePathTracerWGSL();
+    expect(wgsl).toContain('@compute @workgroup_size(16, 16)');
+    expect(wgsl).toContain('fn main(');
+  });
+});
