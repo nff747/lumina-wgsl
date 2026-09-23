@@ -26,13 +26,26 @@
   "author": "nff747",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^20.14.2",
+    "@types/node": "^20.19.43",
     "@types/three": "^0.165.0",
     "three": "^0.165.0",
-    "typescript": "^5.4.5",
-    "vitest": "^1.6.0"
+    "typescript": "^5.9.3",
+    "vitest": "^1.6.1"
   },
   "peerDependencies": {
     "three": ">=0.150.0"
-  }
+  },
+  "directories": {
+    "example": "examples",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nff747/lumina-wgsl.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/nff747/lumina-wgsl/issues"
+  },
+  "homepage": "https://github.com/nff747/lumina-wgsl#readme"
 }
