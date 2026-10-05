@@ -26,7 +26,7 @@
   "author": "nff747",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@types/node": "^20.19.43",
+    "@types/node": "^22.0.0",
     "@types/three": "^0.165.0",
     "three": "^0.165.0",
     "typescript": "^5.9.3",
