@@ -38,7 +38,7 @@ npm start # or python main.py or cargo run
 > **Real-Time WebGPU Volumetric Light Scattering & Eulerian Fluid Solver in WGSL**  
 > Zero-copy, high-throughput Navier-Stokes fluid dynamics and Henyey-Greenstein Mie scattering executing 100% in VRAM.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-Apache_2.0-blue)](LICENSE)
 [![WebGPU](https://img.shields.io/badge/WebGPU-WGSL-cyan.svg)](https://www.w3.org/TR/webgpu/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.4-3178c6.svg)](https://www.typescriptlang.org/)
 [![Vitest](https://img.shields.io/badge/Tests-Vitest%20Passed-10b981.svg)](tests/)
@@ -150,4 +150,4 @@ Verifies:
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [Apache-2.0 License](LICENSE).

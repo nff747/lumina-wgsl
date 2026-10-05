@@ -24,7 +24,7 @@
     "eulerian-grid"
   ],
   "author": "nff747",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "devDependencies": {
     "@types/node": "^20.19.43",
     "@types/three": "^0.165.0",
