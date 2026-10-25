@@ -28,6 +28,26 @@ export class LuminaSimulator {
 
   public paramsBuffer!: GPUBuffer;
 
+  /**
+   * Packs simulation parameters into a 64-byte ArrayBuffer aligned for WebGPU uniform buffers.
+   */
+  public static packSimulationParams(config: SimulatorConfig): ArrayBuffer {
+    const paramsData = new ArrayBuffer(64);
+    const u32View = new Uint32Array(paramsData);
+    const f32View = new Float32Array(paramsData);
+
+    u32View[0] = config.gridDimensions.x;
+    u32View[1] = config.gridDimensions.y;
+    u32View[2] = config.gridDimensions.z;
+    f32View[3] = config.dt ?? 0.016;
+    f32View[4] = config.decay ?? 0.998;
+    u32View[5] = (config.useMacCormack ?? true) ? 1 : 0;
+    f32View[6] = config.vorticityScale ?? 2.5;
+    u32View[7] = config.jacobiIterations ?? 24;
+
+    return paramsData;
+  }
+
   constructor(device: GPUDevice, config: SimulatorConfig) {
     this.device = device;
     this.config = {
@@ -91,19 +111,7 @@ export class LuminaSimulator {
     const workgroupsY = Math.ceil(y / 8);
     const workgroupsZ = Math.ceil(z / 4);
 
-    // Update uniform parameters
-    const paramsData = new ArrayBuffer(64);
-    const u32View = new Uint32Array(paramsData);
-    const f32View = new Float32Array(paramsData);
-
-    u32View[0] = x;
-    u32View[1] = y;
-    u32View[2] = z;
-    f32View[3] = this.config.dt;
-    f32View[4] = this.config.decay;
-    u32View[5] = this.config.useMacCormack ? 1 : 0;
-    f32View[6] = 0.0;
-
+    const paramsData = LuminaSimulator.packSimulationParams(this.config);
     this.device.queue.writeBuffer(this.paramsBuffer, 0, paramsData);
 
     const pass = commandEncoder.beginComputePass({ label: 'Lumina Fluid Simulation' });
