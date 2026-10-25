@@ -88,3 +88,31 @@ describe('FluidGrid Memory & Dispatch Estimators', () => {
     expect(dispatches[2]).toBe(5); // ceil(17 / 4)
   });
 });
+
+import { LuminaSimulator } from '../src/core/LuminaSimulator';
+
+describe('LuminaSimulator Uniform Buffer Packing', () => {
+  it('should format 64-byte aligned simulation parameters', () => {
+    const raw = LuminaSimulator.packSimulationParams({
+      gridDimensions: { x: 128, y: 128, z: 64 },
+      dt: 0.02,
+      decay: 0.995,
+      vorticityScale: 3.0,
+      jacobiIterations: 32,
+      useMacCormack: true,
+    });
+
+    expect(raw.byteLength).toBe(64);
+    const u32 = new Uint32Array(raw);
+    const f32 = new Float32Array(raw);
+
+    expect(u32[0]).toBe(128);
+    expect(u32[1]).toBe(128);
+    expect(u32[2]).toBe(64);
+    expect(f32[3]).toBeCloseTo(0.02, 5);
+    expect(f32[4]).toBeCloseTo(0.995, 5);
+    expect(u32[5]).toBe(1);
+    expect(f32[6]).toBeCloseTo(3.0, 5);
+    expect(u32[7]).toBe(32);
+  });
+});
