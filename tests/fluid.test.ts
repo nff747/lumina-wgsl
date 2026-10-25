@@ -116,3 +116,38 @@ describe('LuminaSimulator Uniform Buffer Packing', () => {
     expect(u32[7]).toBe(32);
   });
 });
+
+import { VolumetricRenderer } from '../src/core/VolumetricRenderer';
+
+describe('VolumetricRenderer Uniform Buffer Packing', () => {
+  it('should pack 64-byte 16-float lighting parameters correctly', () => {
+    const packed = VolumetricRenderer.packLightingUniforms({
+      lightPosition: [10, 20, 30],
+      lightColor: [1.0, 0.9, 0.8],
+      ambientColor: [0.1, 0.1, 0.2],
+      scatteringG: 0.85,
+      absorption: 0.05,
+      densityScale: 1.5,
+      stepCount: 128,
+    });
+
+    expect(packed.length).toBe(16);
+    expect(packed.byteLength).toBe(64);
+    expect(packed[0]).toBe(10);
+    expect(packed[1]).toBe(20);
+    expect(packed[2]).toBe(30);
+    expect(packed[3]).toBeCloseTo(0.85, 5);
+
+    expect(packed[4]).toBeCloseTo(1.0, 5);
+    expect(packed[5]).toBeCloseTo(0.9, 5);
+    expect(packed[6]).toBeCloseTo(0.8, 5);
+    expect(packed[7]).toBeCloseTo(1.5, 5);
+
+    expect(packed[8]).toBeCloseTo(0.1, 5);
+    expect(packed[9]).toBeCloseTo(0.1, 5);
+    expect(packed[10]).toBeCloseTo(0.2, 5);
+    expect(packed[11]).toBeCloseTo(0.05, 5);
+
+    expect(packed[12]).toBe(128);
+  });
+});
