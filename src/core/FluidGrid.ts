@@ -28,6 +28,33 @@ export class FluidGrid {
   public curl: GPUTexture;
   public curlView: GPUTextureView;
 
+  /**
+   * Calculates the total VRAM footprint in bytes for all 3D fluid grid simulation textures.
+   */
+  public static calculateMemoryFootprintBytes(dimensions: GridDimensions): number {
+    const voxels = dimensions.x * dimensions.y * dimensions.z;
+    // rgba16float: 4 channels * 2 bytes = 8 bytes per voxel
+    // r16float: 1 channel * 2 bytes = 2 bytes per voxel
+    // PingPong velocity: 2 textures * 8 bytes
+    // PingPong density: 2 textures * 8 bytes
+    // PingPong pressure: 2 textures * 2 bytes
+    // Divergence: 1 texture * 2 bytes
+    // Curl: 1 texture * 8 bytes
+    const totalBytesPerVoxel = (2 * 8) + (2 * 8) + (2 * 2) + 2 + 8; // 16 + 16 + 4 + 2 + 8 = 46 bytes
+    return voxels * totalBytesPerVoxel;
+  }
+
+  /**
+   * Calculates 3D compute workgroup dispatch dimensions based on (8, 8, 4) workgroup tile size.
+   */
+  public static calculateWorkgroupDispatches(dimensions: GridDimensions): [number, number, number] {
+    return [
+      Math.ceil(dimensions.x / 8),
+      Math.ceil(dimensions.y / 8),
+      Math.ceil(dimensions.z / 4)
+    ];
+  }
+
   constructor(device: GPUDevice, dimensions: GridDimensions) {
     this.device = device;
     this.dimensions = dimensions;
