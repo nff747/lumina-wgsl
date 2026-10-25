@@ -70,3 +70,21 @@ describe('Lumina WGSL - Thermal Buoyancy Kernel', () => {
     expect(buoyancyShader).toContain('velocity.y += forceY * params.dt');
   });
 });
+
+import { FluidGrid } from '../src/core/FluidGrid';
+
+describe('FluidGrid Memory & Dispatch Estimators', () => {
+  it('should compute exact VRAM allocation bytes for 3D textures', () => {
+    // 64x64x64 grid: 262,144 voxels * 46 bytes = 12,058,624 bytes (~11.5 MB)
+    const dims = { x: 64, y: 64, z: 64 };
+    const bytes = FluidGrid.calculateMemoryFootprintBytes(dims);
+    expect(bytes).toBe(64 * 64 * 64 * 46);
+  });
+
+  it('should compute ceiling workgroup dispatch counts matching (8, 8, 4) tile size', () => {
+    const dispatches = FluidGrid.calculateWorkgroupDispatches({ x: 65, y: 33, z: 17 });
+    expect(dispatches[0]).toBe(9); // ceil(65 / 8)
+    expect(dispatches[1]).toBe(5); // ceil(33 / 8)
+    expect(dispatches[2]).toBe(5); // ceil(17 / 4)
+  });
+});
