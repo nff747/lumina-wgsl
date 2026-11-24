@@ -23,7 +23,7 @@
     "ray-marching",
     "eulerian-grid"
   ],
-  "author": "Lunar Paradox <engineering@lunarparadox.com>",
+  "author": "Lunar Paradox <hello@lunarparadox.com>",
   "license": "Apache-2.0",
   "devDependencies": {
     "@types/node": "^22.0.0",
